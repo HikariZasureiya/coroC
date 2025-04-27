@@ -5,16 +5,6 @@
 #define COR_NUM 100
 #define STACK_SIZE 4096
 
-// asm functions
-extern void coroutines_init(void * pointer);
-extern void coroutines_register(void * funptr , uintptr_t top , void* pointer , void * inarg , void * outarg);
-extern void coroutine_yield(void * basepointer);
-extern int  get_curr_cor_idx();
-extern void set_curr_cor_idx(uint64_t value);
-extern int  get_cor_num();
-extern void set_cor_num(uint64_t value);
-extern void coroutine_kill(void * pointer);
-
 // a structure to store the essentials which switching stack. nothing much to see 
 typedef struct{
     uint64_t rsp;
@@ -29,6 +19,17 @@ typedef struct{
 typedef struct cor_struct{          
     cor_pointers * corpointers;
 }cor_struct;
+
+// asm functions
+extern void coroutines_init(cor_pointers * pointer);
+extern void coroutines_register(void * funptr , uintptr_t top , cor_pointers* pointer , void * inarg , void * outarg);
+extern void coroutine_yield(cor_pointers * basepointer);
+extern int  get_curr_cor_idx();
+extern void set_curr_cor_idx(uint64_t value);
+extern int  get_cor_num();
+extern void set_cor_num(uint64_t value);
+extern void coroutine_kill(cor_pointers * pointer);
+
 
 // memory allocator for cor_struct
 cor_struct* cor_struct_init(){
