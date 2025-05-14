@@ -2,6 +2,8 @@
 
 A simple coroutine system implemented in C using x86_64 NASM assembly.
 
+![image](https://github.com/user-attachments/assets/464d53ce-33f6-4424-896f-5a66e4c5acbb)
+
 ## Features
 
 - Lightweight cooperative multitasking
